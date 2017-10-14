@@ -19,8 +19,8 @@ DualVNH5019MotorShield md;
 #define encodPinB1      34     // first encoder B output
 #define encodPinA2      19     // second encoder A output
 #define encodPinB2      35     // second encoder B output
-#define LOOPTIME        100    // PID loop time(ms)
-#define SMOOTH          10         //de 10
+#define LOOPTIME        200    // PID loop time(ms)
+#define SMOOTH          10     // Suavizado
 
 #define setmotorspeed
 
@@ -41,7 +41,7 @@ volatile long count1 = 0;
 volatile long count2 = 0;
 long countAnt1 = 0;
 long countAnt2 = 0;
-float Kp =   10.0; //de 15
+float Kp =   16.0; 
 float Kd =   0.0;
 float Ki =   0.0;
 ros::NodeHandle nh;                                                                               
@@ -56,8 +56,8 @@ void handle_cmd( const geometry_msgs::Twist& cmd_msg) {
   }
   else if (x == 0) {
     
-    rpm_req2 = z*distancia_ruedas*60/(diametro_ruedas*pi*2);  //2
-    rpm_req1 = -rpm_req2;     //1 y 2
+    rpm_req2 = z*distancia_ruedas*60/(diametro_ruedas*pi*2); 
+    rpm_req1 = -rpm_req2;     
   }
   else {
     rpm_req1 = x*60/(pi*diametro_ruedas)-z*distancia_ruedas*60/(diametro_ruedas*pi*2);
@@ -120,11 +120,11 @@ void loop() {
     if (rpm_req1 == 0)
        md.setM1Speed(0);
     else 
-       md.setM1Speed(PWM_val1/45);  //35 
+       md.setM1Speed(PWM_val1/50); //reduced velocity m1
     if (rpm_req2 == 0)
        md.setM2Speed(0);
     else
-       md.setM2Speed(PWM_val2/39);   //29
+       md.setM2Speed(PWM_val2/44); //reduced velocity m2
 
     
     publishRPM(time-lastMilli);                                                                      
