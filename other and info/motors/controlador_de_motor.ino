@@ -41,7 +41,7 @@ volatile long count1 = 0;
 volatile long count2 = 0;
 long countAnt1 = 0;
 long countAnt2 = 0;
-float Kp =   16.0; 
+float Kp =   1.3; 
 float Kd =   0.0;
 float Ki =   0.0;
 ros::NodeHandle nh;                                                                               
@@ -120,11 +120,11 @@ void loop() {
     if (rpm_req1 == 0)
        md.setM1Speed(0);
     else 
-       md.setM1Speed(PWM_val1/50); //reduced velocity m1
+       md.setM1Speed(PWM_val1/55); //reduced velocity m1
     if (rpm_req2 == 0)
        md.setM2Speed(0);
     else
-       md.setM2Speed(PWM_val2/44); //reduced velocity m2
+       md.setM2Speed(PWM_val2/49); //reduced velocity m2
 
     
     publishRPM(time-lastMilli);                                                                      
