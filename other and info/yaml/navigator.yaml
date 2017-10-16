@@ -1,0 +1,30 @@
+# Inflation params used for path planning
+map_inflation_radius: 1.0 # 1.0 [m] por defecto
+robot_radius: 0.3 # ojo que está repetido en costmap.yaml
+
+# Tolerance in target position for MoveToPosition2D (meter)
+navigation_goal_distance: 2.0 # (2.0) 1.0 [m] por defecto
+
+# Tolerance in target heading for MoveToPosition2D (radians)
+navigation_goal_angle: 1.0 # 1.0 [rad] por defecto
+
+# Distance at which to turn off obstacle avoidance (meter)
+navigation_homing_distance: 4.0 # 3.0 [m] por defecto
+
+# Find new exploartion target when in range of current one (meter)
+exploration_goal_distance: 3.0  # 3.0 [m] por defecto
+
+# Strategy MinPos
+min_target_area_size: 1.0
+visualize_frontiers: true
+
+
+#################### Agregados de nav2d_navigator#####################
+
+robot_id: 1 # ID único para los robots en equipo
+map_frame: map # map por defecto
+#robot_frame: robot # por defecto. Comentado por tener nombre cambiado en ros.yaml
+#map_service: get_map # por defecto. Comentado por también aparecer en ros.yaml y con nombre cambiado
+exploration_strategy: NearestFrontierPlanner # Mismo nombre por defecto, no estaba
+min_replanning_period: 3.0 # 3.0 [s] por defecto
+min_replanning_period: 1.0 # 1.0 [s]
