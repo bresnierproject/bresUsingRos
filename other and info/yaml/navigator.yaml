@@ -1,21 +1,17 @@
-# Inflation params used for path planning
-map_inflation_radius: 0.5 # 1.0 [m] por defecto
+
+map_inflation_radius: 1.5 # (de 0.5) Es el radio para incrementar los costos de celdas, alrededor de los obstáculos en el mapa. Debe ser si o sí mayor al radio del robot. (1.0 [m] por defecto)
 robot_radius: 0.35 # ojo que está repetido en costmap.yaml
 
-# Tolerance in target position for MoveToPosition2D (meter)
-navigation_goal_distance: 2.0 # (2.0) 1.0 [m] por defecto
+navigation_goal_distance: 2.0 # (2.0) Se detiene la navegación cuando la distancia al objetivo es menor a este valor. Puede ser sobrescrito por MoveToPosition2D-ActionGoal. (1.0 [m] por defecto, probar cambiar)
 
-# Tolerance in target heading for MoveToPosition2D (radians)
-navigation_goal_angle: 1.0 # 1.0 [rad] por defecto
+navigation_goal_angle: 1.0 # TOlerancia cuando se gira hasta la dirección objetivo para llegar a una meta. Cuando se pone en 0 se ignora la posición objetivo, también puede ser sobrescrito por MoveToPosition2D-ActionGoal. 1.0 [rad] por defecto
 
-# Distance at which to turn off obstacle avoidance (meter)
-navigation_homing_distance: 4.0 # 3.0 [m] por defecto
+navigation_homing_distance: 4.0 # (4.0) Detiene la evación de obstáculos cuando la distancia al objetivo es menor a este valor. Es requerido para llegar a obstáculos cerca de obstáculos. (3.0 [m] por defecto, probar cambio)
 
-# Find new exploartion target when in range of current one (meter)
-exploration_goal_distance: 3.0  # 3.0 [m] por defecto
+exploration_goal_distance: 3.0  # Se comienza a buscar una nueva meta cuando la distancia al objetivo es menor a este valor durante el modo de exploración. (3.0 [m] por defecto) 
 
 # Strategy MinPos
-min_target_area_size: 1.0
+min_target_area_size: 1.0 # Estrategia de la menor posición para NearestFrontierPlanner
 visualize_frontiers: true
 
 
