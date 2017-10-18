@@ -1,11 +1,11 @@
 ### Mapper ################################################
 
-grid_resolution: 0.1
+grid_resolution: 0.1 # 0.025
 range_threshold: 10.0
-map_update_rate: 5 # 
+map_update_rate: 10 # (5) (probar cambio ++)
 publish_pose_graph: true
 max_covariance: 0.01
-transform_publish_period: 0.2   # Tiempo en [s] entre las transformadas
+transform_publish_period: 0.1 # (0.2, probar 0.05 como gmapping) Tiempo que se tarda en [s] entre publicar las transformadas
 min_map_size: 20 #
 
 ### Localizer #############################################
@@ -18,26 +18,26 @@ max_particles: 10000 #10000
 #Crea un mapa dado un ajuste de láser escaners. La implementación de Karlo es de un algoritmo se scan-matching de alto rendimiento que construye un mapa de escaneos individuales y los corrige en base a la odometría.
 
 
-MinimumTravelDistance: 0.2                  # (1.0) Mínima distancia de movimiento entre los escaneos. Si una nueva posición supera este valor desde el último escaneo, el mapper utilizará los datos de uno nuevo. De otro modo decartará el nuevo escaneo si no se cumple el mínimo cambio en MinimumTravelHeading. Defecto de 0.2 m
-MinimumTravelHeading: 0.52                  # (0.52) Mínima dirección entre escaneos. defecto de 20° en radianes. 20° son 0.35 rad...
+MinimumTravelDistance: 1.0                   # (1.0 fijo !!!) Mínima distancia de movimiento entre los escaneos. Si una nueva posición supera este valor desde el último escaneo, el mapper utilizará los datos de uno nuevo. De otro modo decartará el nuevo escaneo si no se cumple el mínimo cambio en MinimumTravelHeading. Defecto de 0.2 m
+MinimumTravelHeading: 0.52                   # (0.52) Mínima dirección entre escaneos. defecto de 20° en radianes. 20° son 0.35 rad...
 LoopSearchMaximumDistance: 10.0              # (4.0) Escaneos menores a esta distancia desde la posición actual serán considerados una correspondencia dentro del loop de clausura. defecto de 4.0 [m]
 #UseScanMatching: true                       # Cuando se coloca en true se utiliza el algoritmo scan-matching. En la mayoría de las situaciones del mundo real, es colocado en true para que el algoritmo del nodo mapper pueda corregir errores de ruido en la odometría y los escaneos. 
 #UseScanBarycenter: true                     # En true, mapper utilizará un centro de variación para calcular las distancias entre los escaneos para determinar si se encuentran los suficientemente cerca o lejos unos de otros. Por defecto se encuentra en true
-ScanBufferSize: 100                         # Corresponde a ScanBufferMaximumScanDistance/MinimumTravelDistance (20/0.2), y es el largo de la cadena de escaneos almacenados para una correspondencia.
-ScanBufferMaximumScanDistance: 20.0         # (20.0) Máxima distancia de escaneos entre la primera y última correspondencia de escaneos almacenada. Defecto de 20 [m].
+ScanBufferSize: 20                           # Corresponde a ScanBufferMaximumScanDistance/MinimumTravelDistance (20/0.2), y es el largo de la cadena de escaneos almacenados para una correspondencia.
+ScanBufferMaximumScanDistance: 20.0          # (20.0) Máxima distancia de escaneos entre la primera y última correspondencia de escaneos almacenada. Defecto de 20 [m].
 #UseResponseExpansion: false                 # (false) Si se incrementa o no la búsqueda de espacio cuando inicialmente no hay buenas correspondencias. 
 #DistanceVariancePenalty: 0.3                # sanciones de varianza para desviaciones desde la odometría cuando se utiliza scan-matching. Se utilizan menores valores para una odometría más precisa. 0.3 defecto
 #MinimumDistancePenalty: 0.5                 # Valor mínimo del multiplicador de sanción para que los puntajes no sean tan pequeños. 0.5 por defecto.
-#AngleVariancePenalty: 20                   # (20?) sanción de varianza para desviaciones desde la odometría cuando se utiliza scan-matching para ángulos. 
+#AngleVariancePenalty: 20                    # (20?) sanción de varianza para desviaciones desde la odometría cuando se utiliza scan-matching para ángulos. 
 #MinimumAnglePenalty: 0.9                    # valor mínimo del multiplicador de sanción para que los puntajes no sean tan paqueños. Los ángulos no son muy precisos y por eso las desviaciones de la odometría no deberian causar que los puntajes bajen precipitadamente. defecto de 0.9
 #LinkMatchMinimumResponseFine: 0.6           # Los escaneos se enlazan sólo si el valor de correlación de la respuesta es más grande que éste. defecto de 0.6
 #LinkScanMaximumDistance: 5.0                # Máxima distancia entre los escaneos enlazados. Los más lejanos no se vincularán independientemente del valor de correlación. Si este número es mayor, muchos escaneos serán considerados cercanos. Puede causar que "mapper" agresivamente intente cerrar los loops con escaneos que no son enlazados al actual escaneo, incluso cuando no están cerca. defecto de 5.0 [m]
 #CorrelationSearchSpaceDimension: 0.3        # Es el tamaño del cuadro de búsqueda utilizado por el enlazador cuando se unen escaneos secuenciales. defecto de 0.3 [m] lo cual le dice al matcher utilizar un marco de 30x30 cm.
 #CorrelationSearchSpaceResolution: 0.01      # Resolución del marco de correlaciones (tamaño de los cuadros de celdas). defecto de 0.01 [m].
 #CorrelationSearchSpaceSmearDeviation: 0.03  # Lecturas de puntos que son difuminados por este valor en X e Y para crear una respuesta de suavizado. Utilizar valores mayores para contornos más irregulares, pero con paredes planas. Defecto de 0.03 [m]
-#CoarseSearchAngleOffset: 20                # Rango de ángulos para buscar en cada dirección desde la orientación del robot durante una áspera búsqueda. Defecto equivalente en radianes de 20°.
+#CoarseSearchAngleOffset: 20                 # Rango de ángulos para buscar en cada dirección desde la orientación del robot durante una áspera búsqueda. Defecto equivalente en radianes de 20°.
 #FineSearchAngleOffset: 0.2                  # Rango de ángulos para buscar en cada dirección desde la orientación del robot durante una más fina búsqueda. Defecto equivalente en radianes de 0.2°.
-#CoarseAngleResolution: 2                   # Resolución en ángulos para buscar durante una búsqueda áspera. defecto equivalente en radianes de 2°
+#CoarseAngleResolution: 2                    # Resolución en ángulos para buscar durante una búsqueda áspera. defecto equivalente en radianes de 2°
 #LoopSearchSpaceDimension: 8.0               # tamaño de búsqueda de cuadro utilizado por el matcher cuando se detectan cláusulas de loops. valor defecto de 8.0 [m] lo cual le dice al matcher utilizar un cuadro de 8x8.
 #LoopSearchSpaceResolution: 0.05             # Resolución del marco de correlacion utilizado por el matcher para determinar una posible cláusula de loop. defecto de 0.05 [m]
 #LoopSearchSpaceSmearDeviation: 0.03         # Lecturas de puntos que son difuminados por este valor en X e Y para crear una respuesta de suavizado. es utilizado por el matcher para determinar una posible correspondencia de clausura del loop. defecto de 0.03 [m]
@@ -45,5 +45,3 @@ ScanBufferMaximumScanDistance: 20.0         # (20.0) Máxima distancia de escane
 #LoopMatchMaximumVarianceCoarse: 0.16        # Valores de covarianza para que una posible cláusula de loop tenga que ser menor a este valor para considerar una solución viable. Aplica a la búsqueda áspera. defecto 0.16
 #LoopMatchMinimumResponseCoarse: 0.7         # Si la respuesta es mayor a éste, se inicializa el loop de clausura de búsqueda a una resolución áspera. defecto de 0.7
 #LoopMatchMinimumResponseFine: 0.7           # Si la respuesta es mayor a éste, se inicializa el loop de clausura de búsqueda a una resolución más fina. defecto de 0.7
-
-
