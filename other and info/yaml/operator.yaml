@@ -1,16 +1,12 @@
-# Maximum velocity command the operator will send to the robot (in m/s)
-max_velocity: 0.4 # de 0.25 1.0 [m/s] por defecto
+max_velocity: 0.4 # Máximo comando de velocidad que el operator enviará al robot (1.0 [m/s] por defecto)
 
-# If set to true, the selected best direction is published as a GridCells-Message
-publish_route: true #falso por defecto
+publish_route: true #True por defecto. Se utiliza como GridCells y determina si se publican o no las rutas y la deseada por medio de los temas de ros. 
 
-# The way is assumed to be free when there is no obstacle within this range (in meter)
-max_free_space: 7.0 # 5.0 [m] por defecto
-safety_decay: 0.97 #0.95 por defecto
+max_free_space: 5.0 # Máximo largo considerado para una trayectoria. Todas las direcciones de giro tendrán un valor igual de distancia a 1.0. ( 5.0 [m] por defecto )
+safety_decay: 0.97 # Los obstćulos serán descontados por este valor para cada distancia a las celdas en el mapa de costes. Un valor menor a 0 causa que el robot evada obstáculos más tarde e ignore los obstáculos que están más lejos. (0.95 por defecto)
 
 # The importance weights of the 3 action values
-distance_weight: 1 #1 por defecto
-safety_weight: 2 #1 por defecto
-conformance_weight: 1 #1 por defecto
-continue_weight: 0 #1 por defecto
-
+distance_weight: 1 # (1) Relativa influencia del espacio libre en frente del robot (1 por defecto)
+safety_weight: 2 # (2) Relativa influencia de las distancias de trayectorias a los obstáculos (1 por defecto)
+conformance_weight: 1 # (1) Influencia relativa de la conformidad con la dirección deseada de giro desde el planeador de caminos (1 por defecto)
+continue_weight: 0 # (0) Relativa influencia de la continuidad de los comandos de control (1 por defecto)
