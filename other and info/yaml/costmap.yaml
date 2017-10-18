@@ -1,7 +1,7 @@
 global_frame: odom
 robot_base_frame: base_link
-update_frequency: 5.0  # de 10.0
-publish_frequency: 1.0 # !!! de 1.0       ¡¡¡
+update_frequency: 8.0  # frecuencia en [Hz], en la que el mapa es actualizado de 5.0 (defecto de 5.0)
+publish_frequency: 5.0 # frecuencia en [Hz] a la que el mapa muestra la información (defecto de 1.0)
 
 #Pisadas
 #footprint: [[0.1, 0.25], [0.1, -0.25], [-0.4,0.25], [-0.4,-0.25]]   #
@@ -15,20 +15,24 @@ static_map: false
 rolling_window: true            # con mapa estático se le asigna true
 width: 6.0
 height: 6.0
-resolution: 0.05                # resolución del mapa en [m/cell]
+resolution: 0.05                # (0.05) resolución del mapa en [m/cell]
 #end - COMMENT these lines if you set static_map to true
 
 map_type: costmap               # tipo de mapa
 track_unknown_space: true       # seguir un espacio no conocido
 
-transform_tolerance: 0.3        # (0.3) tolerancia de transformadas en [s]
-obstacle_range: 4.0             # máximo rango en [m] para insertar obstáculos usando el sensor de visión
+transform_tolerance: 0.35       # (0.2) corresponde al máximo monto de latencia permitido entre las transformadas . Si el árbol de transformadas no se actualiza a este parámetro, la etapa de navegación detiene al robot. Por lo tanto, especifica el retraso de transformadas tf en la que los datos son tolerables en [s]. Este parámetro sirve como salvavidas contra perder uniones entre el árbol de transformadas, mientras se sigue permitiendo un monto de latencia en el cual el usuario se sienta conforme con que exista en el sistema.
+obstacle_range: 4.0             # (4.0) máximo rango en [m] para insertar obstáculos usando el sensor de visión
 min_obstacle_height: 0.0        # altura mínima obstáculos
 max_obstacle_height: 2.0        # idem máxima
-raytrace_range: 4.5             # máximo rango en [m] para quitar obstáculos
+raytrace_range: 4.5             # (4,5) máximo rango en [m] para quitar obstáculos
 robot_radius: 0.35               # radio del robot en 0.3 [m]
-inflation_radius: 0.75           # (0.2) radio de inflación de obstáculos en [m]
+inflation_radius: 0.75          # (0.2) radio de inflación de obstáculos en [m]
 cost_scaling_factor: 2.0        # es un factor aplicado a los valores de costes durante la inflación
 lethal_cost_threshold: 100      # valor umbral al cual considerar un costo letal cuando se lee un mapa desde el servidor de mapas
 observation_sources: scan       
-scan: {data_type: LaserScan, expected_update_rate: 0.1, observation_persistence: 0.0, marking: true, clearing: true, max_obstacle_height: 0.4, min_obstacle_height: 0.08} #(e_u_r 0.4)
+scan: {data_type: LaserScan, expected_update_rate: 0.0, observation_persistence: 0.0, marking: true, clearing: true, max_obstacle_height: 2.0, min_obstacle_height: 0.08} #(e_u_r 0.4)
+
+# expected_update_rate: (0.4 cambiado) es la frecuencia con que se esperan las lecturas del sensor en segundos. Un valor 0.0 permite infinito tiempo entre las lecturas. Este parámetro es utilizado como un a prueba de fallos para evitar que el navigation stack comande al robot cuando el sensor ha fallado. Debe siempre ser mayor a las tasas de transmisión.
+# max_obstacle_height: (0.4 cambiado) máxima altura en metros para que la lectura del sensor sea condierada válida. 
+# min_obstacle_height: (0.08) mínima altura en metros para que una lectura del sensor sea considerada válida. Usualmente en 0.0, nivel del piso.
