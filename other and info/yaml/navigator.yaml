@@ -2,11 +2,11 @@
 map_inflation_radius: 1.5 # (de 1.5) Es el radio para incrementar los costos de celdas, alrededor de los obstáculos en el mapa. Debe ser si o sí mayor al radio del robot. (1.0 [m] por defecto)
 robot_radius: 0.35 # ojo que está repetido en costmap.yaml
 
-navigation_goal_distance: 3.0 # (2.0) Se detiene la navegación cuando la distancia al objetivo es menor a este valor. Puede ser sobrescrito por MoveToPosition2D-ActionGoal. (1.0 [m] por defecto, probar cambiar)
+navigation_goal_distance: 1.0 # (3.0) Se detiene la navegación cuando la distancia al objetivo es menor a este valor. Puede ser sobrescrito por MoveToPosition2D-ActionGoal. (1.0 [m] por defecto, probar cambiar)
 
 navigation_goal_angle: 1.0 # Tolerancia cuando se gira hasta la dirección objetivo para llegar a una meta. Cuando se pone en 0 se ignora la posición objetivo, también puede ser sobrescrito por MoveToPosition2D-ActionGoal. 1.0 [rad] por defecto.
 
-navigation_homing_distance: 4.0 # (4.0) Detiene la evación de obstáculos cuando la distancia al objetivo es menor a este valor. Es requerido para llegar a obstáculos cerca de obstáculos. (3.0 [m] por defecto, probar cambio)
+navigation_homing_distance: 4.0 # (de 4.0) Detiene la evación de obstáculos cuando la distancia al objetivo es menor a este valor. Es requerido para llegar a obstáculos cerca de obstáculos. (3.0 [m] por defecto, probar cambio)
 
 exploration_goal_distance: 3.0  # Se comienza a buscar una nueva meta cuando la distancia al objetivo es menor a este valor durante el modo de exploración. (3.0 [m] por defecto) 
 
@@ -19,8 +19,8 @@ visualize_frontiers: true
 
 #robot_id: 1 # ID único para los robots en equipo
 #map_frame: map # map por defecto
-#robot_frame: robot # por defecto. Comentado por tener nombre cambiado en ros.yaml
+#robot_frame: base_link # (robot por defecto). Comentado por tener nombre cambiado en ros.yaml
 #map_service: get_map # por defecto. Comentado por también aparecer en ros.yaml y con nombre cambiado
 #exploration_strategy: NearestFrontierPlanner # Mismo nombre por defecto, no estaba
-#min_replanning_period: 3.0 # 3.0 [s] por defecto
-#min_replanning_period: 1.0 # 1.0 [s]
+min_replanning_period: 2.5 # (3.0 [s] por defecto) tiempo de replaneamiento durante navegación y exploración
+max_replanning_period: 0.5 # (1.0 [s] por defecto) mínimo tiempo entre los ciclos de replaneamiento durante la exploración
