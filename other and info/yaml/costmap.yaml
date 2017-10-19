@@ -1,7 +1,7 @@
 global_frame: odom
 robot_base_frame: base_link
-update_frequency: 8.0  # frecuencia en [Hz], en la que el mapa es actualizado de 5.0 (defecto de 5.0)
-publish_frequency: 5.0 # frecuencia en [Hz] a la que el mapa muestra la información (defecto de 1.0)
+update_frequency: 7.0  # (8.0) frecuencia en [Hz], en la que el mapa es actualizado de 5.0 (defecto de 5.0)
+publish_frequency: 5.0 # (5.0) frecuencia en [Hz] a la que el mapa muestra la información (defecto de 1.0)
 
 #Pisadas
 #footprint: [[0.1, 0.25], [0.1, -0.25], [-0.4,0.25], [-0.4,-0.25]]   #
@@ -10,11 +10,11 @@ publish_frequency: 5.0 # frecuencia en [Hz] a la que el mapa muestra la informac
 publish_voxel_map: true         # (true) permite publicar cuadros 3D para representaciones como marcado, libre y desconocido
 
 #set to true if you want to initialize the costmap from a static map
-static_map: false
+static_map: false               # tipo de mapa. Cuando es puesto en falso, significa que el mapa irá cambiando conforme el robot se vaya desplazando por él. Por ejemplo, una silla en otra posición en la que no estaba antes, cambiará, también las personas. Por otro lado, con un valor en true significa que no cambiará las cosas que se registraron antes dentro de él.
 
 rolling_window: true            # con mapa estático se le asigna true
-width: 6.0
-height: 6.0
+width: 6.0                      # ancho del mapa en metros
+height: 6.0                     # altura del mapa en metros
 resolution: 0.05                # (0.05) resolución del mapa en [m/cell]
 #end - COMMENT these lines if you set static_map to true
 
@@ -26,7 +26,7 @@ obstacle_range: 4.0             # (4.0) máximo rango en [m] para insertar obst�
 min_obstacle_height: 0.0        # altura mínima obstáculos
 max_obstacle_height: 2.0        # idem máxima
 raytrace_range: 4.5             # (4,5) máximo rango en [m] para quitar obstáculos
-robot_radius: 0.35               # radio del robot en 0.3 [m]
+robot_radius: 0.35              # radio del robot en 0.3 [m]
 inflation_radius: 0.75          # (0.2) radio de inflación de obstáculos en [m]
 cost_scaling_factor: 2.0        # es un factor aplicado a los valores de costes durante la inflación
 lethal_cost_threshold: 100      # valor umbral al cual considerar un costo letal cuando se lee un mapa desde el servidor de mapas
