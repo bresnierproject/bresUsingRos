@@ -1,10 +1,10 @@
 
-map_inflation_radius: 1.5 # (de 0.5) Es el radio para incrementar los costos de celdas, alrededor de los obstáculos en el mapa. Debe ser si o sí mayor al radio del robot. (1.0 [m] por defecto)
+map_inflation_radius: 1.5 # (de 1.5) Es el radio para incrementar los costos de celdas, alrededor de los obstáculos en el mapa. Debe ser si o sí mayor al radio del robot. (1.0 [m] por defecto)
 robot_radius: 0.35 # ojo que está repetido en costmap.yaml
 
-navigation_goal_distance: 2.0 # (2.0) Se detiene la navegación cuando la distancia al objetivo es menor a este valor. Puede ser sobrescrito por MoveToPosition2D-ActionGoal. (1.0 [m] por defecto, probar cambiar)
+navigation_goal_distance: 3.0 # (2.0) Se detiene la navegación cuando la distancia al objetivo es menor a este valor. Puede ser sobrescrito por MoveToPosition2D-ActionGoal. (1.0 [m] por defecto, probar cambiar)
 
-navigation_goal_angle: 1.0 # TOlerancia cuando se gira hasta la dirección objetivo para llegar a una meta. Cuando se pone en 0 se ignora la posición objetivo, también puede ser sobrescrito por MoveToPosition2D-ActionGoal. 1.0 [rad] por defecto
+navigation_goal_angle: 1.0 # Tolerancia cuando se gira hasta la dirección objetivo para llegar a una meta. Cuando se pone en 0 se ignora la posición objetivo, también puede ser sobrescrito por MoveToPosition2D-ActionGoal. 1.0 [rad] por defecto.
 
 navigation_homing_distance: 4.0 # (4.0) Detiene la evación de obstáculos cuando la distancia al objetivo es menor a este valor. Es requerido para llegar a obstáculos cerca de obstáculos. (3.0 [m] por defecto, probar cambio)
 
