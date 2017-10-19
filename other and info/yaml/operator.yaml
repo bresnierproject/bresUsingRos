@@ -3,7 +3,7 @@ max_velocity: 0.4 # Máximo comando de velocidad que el operator enviará al rob
 publish_route: true #True por defecto. Se utiliza como GridCells y determina si se publican o no las rutas y la deseada por medio de los temas de ros. 
 
 max_free_space: 5.0 # Máximo largo considerado para una trayectoria. Todas las direcciones de giro tendrán un valor igual de distancia a 1.0. ( 5.0 [m] por defecto )
-safety_decay: 0.97 # Los obstćulos serán descontados por este valor para cada distancia a las celdas en el mapa de costes. Un valor menor a 0 causa que el robot evada obstáculos más tarde e ignore los obstáculos que están más lejos. (0.95 por defecto)
+safety_decay: 0.95 # Los obstćulos serán descontados por este valor para cada distancia a las celdas en el mapa de costes. Un valor menor a 0 causa que el robot evada obstáculos más tarde e ignore los obstáculos que están más lejos. (0.95 por defecto)
 
 # The importance weights of the 3 action values
 distance_weight: 1 # (1) Relativa influencia del espacio libre en frente del robot (1 por defecto)
