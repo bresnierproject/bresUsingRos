@@ -2,10 +2,10 @@
 
 grid_resolution: 0.1 # 0.025
 range_threshold: 10.0
-map_update_rate: 10 # (5) (probar cambio ++)
+map_update_rate: 1 # parece ser tiempo en segundos para actualizar mapa( de 5, en 20) (probar cambio ++)
 publish_pose_graph: true
 max_covariance: 0.01
-transform_publish_period: 0.1 # (0.2, probar 0.05 como gmapping) Tiempo que se tarda en [s] entre publicar las transformadas
+transform_publish_period: 0.125 # (default 0.1 al parecer) Tiempo que se tarda en [s] entre publicar las transformadas
 min_map_size: 20 #
 
 ### Localizer #############################################
@@ -18,7 +18,7 @@ max_particles: 10000 #10000
 #Crea un mapa dado un ajuste de láser escaners. La implementación de Karlo es de un algoritmo se scan-matching de alto rendimiento que construye un mapa de escaneos individuales y los corrige en base a la odometría.
 
 
-MinimumTravelDistance: 1.0                   # (1.0 fijo !!!) Mínima distancia de movimiento entre los escaneos. Si una nueva posición supera este valor desde el último escaneo, el mapper utilizará los datos de uno nuevo. De otro modo decartará el nuevo escaneo si no se cumple el mínimo cambio en MinimumTravelHeading. Defecto de 0.2 m
+MinimumTravelDistance: 0.5                   # (1.0 fijo, el desempeño cambia totalmente con este parámetro !!!) Mínima distancia de movimiento entre los escaneos. Si una nueva posición supera este valor desde el último escaneo, el mapper utilizará los datos de uno nuevo. De otro modo decartará el nuevo escaneo si no se cumple el mínimo cambio en MinimumTravelHeading. Defecto de 0.2 m
 MinimumTravelHeading: 0.52                   # (0.52) Mínima dirección entre escaneos. defecto de 20° en radianes. 20° son 0.35 rad...
 LoopSearchMaximumDistance: 10.0              # (4.0) Escaneos menores a esta distancia desde la posición actual serán considerados una correspondencia dentro del loop de clausura. defecto de 4.0 [m]
 #UseScanMatching: true                       # Cuando se coloca en true se utiliza el algoritmo scan-matching. En la mayoría de las situaciones del mundo real, es colocado en true para que el algoritmo del nodo mapper pueda corregir errores de ruido en la odometría y los escaneos. 
